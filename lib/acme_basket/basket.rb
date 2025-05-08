@@ -64,8 +64,7 @@ module AcmeBasket
     end
 
     def discount
-      # TODO: apply rules here
-      0.0
+      @offers.sum { |offer| offer.apply(@items) }
     end
 
     def total_after_discount
