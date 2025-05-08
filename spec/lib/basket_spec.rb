@@ -76,6 +76,36 @@ RSpec.describe AcmeBasket::Basket do
     end
   end
 
+  describe "#total with offers applied" do
+    def add_all(*codes)
+      codes.each { |code| subject.add(code) }
+    end
+
+    it "calculates total for B01, G01" do
+      add_all("B01", "G01")
+      expect(subject.total).to eq(37.85)
+    end
+
+    it "calculates total for R01, R01 (1 half price)" do
+      add_all("R01", "R01")
+      expect(subject.total).to eq(54.37)
+    end
+
+    it "calculates total for R01, G01" do
+      add_all("R01", "G01")
+      expect(subject.total).to eq(60.85)
+    end
+
+    it "calculates total for B01, B01, R01, R01, R01" do
+      add_all("B01", "B01", "R01", "R01", "R01")
+      expect(subject.total).to eq(98.27)
+    end
+
+    it "returns zero total for empty basket" do
+      expect(subject.total).to eq(0.0)
+    end
+  end
+
   describe "#total with no offers" do
     subject { described_class.new }
 

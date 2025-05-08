@@ -9,7 +9,7 @@ module AcmeBasket
                    offers: [])
       @catalogue = catalogue
       @delivery_rule = delivery_rule
-      @offers = offers
+      @offers = offers.uniq(&:class)
       @items = []
     end
 
