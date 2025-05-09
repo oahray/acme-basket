@@ -25,7 +25,7 @@ Start the console:
 Example usage:
 
 ```ruby
-basket = AcmeBasket::Basket.new(offers: [AcmeBasket::Offer::BuyOneGetSecondHalf.new])
+basket = AcmeBasket::Basket.new(offers: [AcmeBasket::Offer::BuyRedWidgetGetSecondHalf.new])
 
 basket.add("R01", 2)
 puts basket.total  # => 54.37
